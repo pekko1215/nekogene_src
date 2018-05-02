@@ -1,0 +1,60 @@
+body{
+    -webkit-app-region: drag;
+    background-color:#3d2b26;
+}
+
+.comment{
+    /*border:solid 1px;*/
+    margin-bottom: -37px;
+}
+
+.name-wrap{
+    background-image: url("window.png");
+    display: inline-block;
+    font-size:18pt;
+    width: 286px;
+    height: 56px;
+    margin-left: 16px;
+}
+.icon{
+    position: absolute;
+    left: calc(701px + 12px);
+    top: 32px;
+    width: 128px;
+    border-radius: 7px;
+}
+.name{
+    width: 231px;
+    height: 43px;
+    top: 13px;
+    left: 27px;
+    position: relative;
+    color: white;
+    text-align: center;
+}
+
+.text-wrap{
+    background-color: #fff4e0;
+    top: -42px;
+    left: 0px;
+    padding: 2px;
+    border: solid 3px #2d1311;
+    font-size: 16pt;
+    border-radius: 42px;
+    position: relative;
+    width: 701px;
+    height: 153px;
+    z-index: -1;
+}
+
+.text{
+    position: absolute;
+    top: 41px;
+    left: 32px;
+    font-family: 'Noto Sans JP', sans-serif;
+    width: 642px;
+    height: 71px;
+    font-size: 21.5pt;
+    line-height: 36px;
+    font-weight: bold;
+}
