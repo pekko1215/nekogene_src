@@ -243,6 +243,7 @@ function talkText(message) {
     if (!tcpSocket) {
         return
     }
+    if(message[0] == '/') return
     var arr = tcpTarget.split(':')
     var messageBuffer = new Buffer(message);
     var buffer = new Buffer(15 + messageBuffer.length);
