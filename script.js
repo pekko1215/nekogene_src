@@ -305,10 +305,10 @@ function removeChat(){
     $('.comment').remove()
 }
 async function setChat(message,id,noRead){
-    var noread = /^\//.test(message) || noRead;
+    var noread =  noRead;
     //コテハンの設定
-    console.log(message)
-    if(noread) return;
+
+    if(/^\//.test(message)) return;
     if (/(＠|@|by)/.test(message)) {
         var name = message.split(message.match(/(＠|@|by)/g).slice(-1)[0]).slice(-1)[0];
         handleNames[id] = name;
