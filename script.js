@@ -305,7 +305,7 @@ function removeChat(){
     $('.comment').remove()
 }
 async function setChat(message,id,noRead){
-    var noread = message[0] == '/' || noRead;
+    var noread = /^\//.test(message) || noRead;
     //コテハンの設定
     console.log(message)
     if(noread) return;
