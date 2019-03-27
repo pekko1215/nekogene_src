@@ -307,7 +307,6 @@ function removeChat(){
 async function setChat(message,id,noRead){
     var noread =  noRead;
     //コテハンの設定
-
     if(/^\//.test(message)) return;
     if (/(＠|@|by)/.test(message)) {
         var name = message.split(message.match(/(＠|@|by)/g).slice(-1)[0]).slice(-1)[0];
