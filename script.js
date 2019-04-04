@@ -216,7 +216,6 @@ class LiveInfomation {
         this.socket.send(JSON.stringify(data));
     }
     async messageEventHandler(data) {
-        // console.log(data);
         switch(this.mode){
             case 'joinRoom':
                 const { body, type } = data;
@@ -306,8 +305,9 @@ function removeChat(){
     $('.comment').remove()
 }
 async function setChat(message,id,noRead){
-    var noread = message[0] == '/' || noRead;
+    var noread =  noRead;
     //コテハンの設定
+    if(/^\//.test(message)) return;
     if (/(＠|@|by)/.test(message)) {
         var name = message.split(message.match(/(＠|@|by)/g).slice(-1)[0]).slice(-1)[0];
         handleNames[id] = name;
