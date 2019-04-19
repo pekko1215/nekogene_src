@@ -216,6 +216,7 @@ class LiveInfomation {
         this.socket.send(JSON.stringify(data));
     }
     async messageEventHandler(data) {
+        console.log(data);
         switch(this.mode){
             case 'joinRoom':
                 const { body, type } = data;
@@ -305,9 +306,8 @@ function removeChat(){
     $('.comment').remove()
 }
 async function setChat(message,id,noRead){
-    var noread =  noRead;
+    var noread = message[0] == '/' || noRead;
     //コテハンの設定
-    if(/^\//.test(message)) return;
     if (/(＠|@|by)/.test(message)) {
         var name = message.split(message.match(/(＠|@|by)/g).slice(-1)[0]).slice(-1)[0];
         handleNames[id] = name;
@@ -363,10 +363,9 @@ function tcpDisconnect() {
 }
 
 function talkText(message) {
-    // if (!tcpSocket) {
-    //     return
-    // }
-    if (message[0] == '/') return
+    if (!tcpSocket) {
+        return
+    }
     var arr = tcpTarget.split(':')
     var messageBuffer = new Buffer(message);
     var buffer = new Buffer(15 + messageBuffer.length);
@@ -378,13 +377,5 @@ function talkText(message) {
     buffer.writeUInt8(00, 10);
     buffer.writeUInt32LE(messageBuffer.length, 11);
     messageBuffer.copy(buffer, 15, 0, messageBuffer.length);
-    var client = new Net.Socket();
-    client.connect(arr[1],arr[0],()=>{
-        client.write(buffer);
-        client.end();
-    })
-//     var net = Net.connect({ port: arr[1], host: arr[0] })
-//     net.on('error', console.error)
-// 
-//     net.end(buffer);
+    Net.connect({port:arr[1], host:arr[0]}).end(buffer).on('error',console.error);
 }
